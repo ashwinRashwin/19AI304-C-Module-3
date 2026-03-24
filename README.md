@@ -4,7 +4,7 @@
 ## 6. Implementation of string manipulation.
 # Ex.No:11
   Formulate a C program to convert a given decimal number into its binary equivalent and display it.
-# Date : 
+# Date : 16.02.2026
 # Aim:
 To formulate a C program to convert a decimal number into its binary equivalent and display it.
 # Algorithm:
@@ -28,7 +28,36 @@ To formulate a C program to convert a decimal number into its binary equivalent 
 ### Step 8: 
    Stop
 # Program:
+#include <stdio.h>
+
+int main()
+{
+    int n, i = 0;
+    int binary[32];
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &n);
+
+    if(n == 0)
+        printf("Binary: 0");
+    else
+    {
+        while(n > 0)
+        {
+            binary[i++] = n % 2;
+            n = n / 2;
+        }
+
+        printf("Binary: ");
+        for(int j = i - 1; j >= 0; j--)
+            printf("%d", binary[j]);
+    }
+
+    return 0;
+}
 # Output:
+<img width="383" height="196" alt="image" src="https://github.com/user-attachments/assets/1124099e-aef2-4426-bbc2-896a0e9fcf6c" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -37,7 +66,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-3- Module 3 - FoC
 # Ex.No:12
   Develop a C program to read a matrix and find its saddle point. A saddle point is an element that is the minimum in its row and also the maximum in its column. If such an element exists, display its position and value.
-# Date : 
+# Date : 16.02.2026
 # Aim:
   To develop a C program that inputs a matrix, checks each row for its minimum element, verifies whether that element is also the maximum in its corresponding column, and displays the saddle point and its position if it exists.
 # Algorithm:
@@ -67,7 +96,55 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], m, n, i, j, k, l, min, col, found = 0;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &m, &n);
+
+    printf("Enter matrix elements:\n");
+    for(i = 0; i < m; i++)
+        for(j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+
+    for(i = 0; i < m; i++)
+    {
+        min = a[i][0];
+        col = 0;
+
+        for(j = 1; j < n; j++)
+        {
+            if(a[i][j] < min)
+            {
+                min = a[i][j];
+                col = j;
+            }
+        }
+
+        for(k = 0; k < m; k++)
+        {
+            if(a[k][col] > min)
+                break;
+        }
+
+        if(k == m)
+        {
+            printf("Saddle Point: %d at position (%d, %d)\n", min, i, col);
+            found = 1;
+        }
+    }
+
+    if(found == 0)
+        printf("No Saddle Point found\n");
+
+    return 0;
+}
 # Output:
+<img width="280" height="223" alt="image" src="https://github.com/user-attachments/assets/75ef20a0-2c97-49f0-a336-067d5a676c94" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -76,7 +153,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-3- Module 3 - FoC
 # Ex.No:13
   Formulate a C program to reverse a string entered by the user and display the reversed string.
-# Date : 
+# Date : 16.02.2026
 # Aim:
   To formulate a C program that reads a string from the user, reverses it, and prints the reversed string.
 # Algorithm:
@@ -101,7 +178,39 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10: 
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[100], rev[100];
+    int len, i;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    len = strlen(str);
+
+    if(str[len - 1] == '\n')
+    {
+        str[len - 1] = '\0';
+        len--;
+    }
+
+    for(i = 0; i < len; i++)
+    {
+        rev[i] = str[len - i - 1];
+    }
+
+    rev[len] = '\0';
+
+    printf("Reversed string: %s\n", rev);
+
+    return 0;
+}
 # Output:
+<img width="421" height="187" alt="image" src="https://github.com/user-attachments/assets/3aa1ab47-f980-477e-94e8-0d5c7dbba485" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
