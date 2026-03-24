@@ -218,7 +218,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-3- Module 3 - FoC
 # Ex.No:14
   Formulate a C program to count the frequency of each character in a given string and display the count of every character.
-# Date : 
+# Date : 16.02.2026
 # Aim:
   To formulate a C program that accepts a string from the user and calculates the frequency of each character in the string.
 # Algorithm:
@@ -244,7 +244,32 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8:
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int freq[256] = {0};
+
+    fgets(str, sizeof(str), stdin);
+
+    for(int i = 0; str[i] != '\0'; i++) {
+        if(str[i] != '\n') {
+            freq[(int)str[i]]++;
+        }
+    }
+
+    for(int i = 0; i < 256; i++) {
+        if(freq[i] != 0) {
+            printf("%c %d\n", i, freq[i]);
+        }
+    }
+
+    return 0;
+}
 # Output:
+<img width="207" height="283" alt="image" src="https://github.com/user-attachments/assets/230ff1eb-b449-457d-ae87-ebc8cc5e4abb" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -253,7 +278,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-3- Module 3 - FoC
 # Ex.No:15
   Formulate a C program to remove duplicate words from a given string and display the string with only unique words.
-# Date : 
+# Date : 16.02.2026
 # Aim:
   To formulate a C program to remove duplicate words from a given string and display the string with only unique words.
 # Algorithm:
@@ -278,7 +303,46 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8: 
   Stop
 # Program:
+ #include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[200], words[50][50];
+    int count = 0;
+
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    char *token = strtok(str, " ");
+    while (token) {
+        int found = 0;
+
+        for (int i = 0; i < count; i++) {
+            if (strcmp(words[i], token) == 0) {
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            strcpy(words[count], token);
+            count++;
+        }
+
+        token = strtok(NULL, " ");
+    }
+
+    for (int i = 0; i < count; i++) {
+        printf("%s", words[i]);
+        if (i != count - 1)
+            printf(" ");
+    }
+
+    return 0;
+}
 # Output:
+<img width="237" height="202" alt="image" src="https://github.com/user-attachments/assets/e4db59bc-5fd6-4ccd-9cbb-39a6cb1f6ac3" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
